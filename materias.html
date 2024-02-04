@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="estilo.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <table class="table table-striped" id="tabla1">
+
+            </table>
+        </div>
+    </div>
+
+    <script>
+        fetch("Materias.json") // Cambia el nombre del archivo a tu archivo de datos de materias
+            .then(response => response.json())
+            .then(datos => {
+                let cad = '<tr><td colspan="1"><table border="1"><tr><td><a class="menu-link btn btn-primary" href="index.html">ALUMNOS</a>&nbsp;&nbsp;</td><td><a class="menu-link btn btn-secondary" href="materias.html">MATERIAS</a>&nbsp;&nbsp;</td><td><a class="menu-link btn btn-primary" href="profesor.html">PROFESOR</a>&nbsp;&nbsp;<td><a class="menu-link btn btn-secondary" href="nota.html">NOTAS</a>&nbsp;&nbsp;</td></td></tr></table></td></tr><br/><tr><th>ID</th><th>NOMBRE</th><th>CREDITOS</th><th>HORAS</th><th>PRERREQUISITO</th></tr>';
+                for (let materia of datos) {
+                    cad += `<tr><td>${materia.idMateria}</td>
+                        <td>${materia.nombreMateria}</td>
+                        <td>${materia.credistosMateria}</td>
+                        <td>${materia.horasMateria}</td>
+                        <td>${materia.prerrequisitoMateria}</td></tr>`;
+                }
+                document.getElementById("tabla1").innerHTML = cad;
+            }).catch(err => console.log(`No se visualizan los datos`));
+    </script>
+</body>
+
+</html>
